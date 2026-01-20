@@ -27,7 +27,7 @@ public class CustomerApp {
 		xmlBeanDefinitionReader.loadBeanDefinitions(resource);
 		
 		// Step5: Create Bean , Actual Inversion of Control
-	
+
 		FullName fullName=(FullName) defaultListableBeanFactory.getBean("fullName");
 		
 		logger.info("FullName="+fullName);
@@ -55,3 +55,5 @@ public class CustomerApp {
 	}
 
 }
+
+https://github.com/Kunal70616c/spring-legacy-ioc.git
