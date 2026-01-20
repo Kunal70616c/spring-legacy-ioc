@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+ <!-- object of the customer -->
+ <bean id="customer" class="sh.surge.kunal.banking.models.Customer" autowire="byType" >
+ <property name="accountNo" value="6855858"></property>
+ <!--  
+ <property name="fullName" ref="fullName"></property>
+ <property name="address" ref="address"></property>
+ -->
+ <property name="email" value="param@gmail.com"></property>
+ <property name="contactNo" value="9962376324"></property> 
+ </bean>
+ <!-- object of FullName -->
+ <bean id="fullName" class="sh.surge.kunal.banking.models.FullName">
+ <!-- DI -->
+   <property name="firstName" value="Parameswari"></property>
+   <property name="lastName" value="Ettiappan"></property>
+ </bean>
+ <!-- object of address -->
+ <bean id="address1" class="sh.surge.kunal.banking.models.Address">
+ <constructor-arg index="0"  value="8A"></constructor-arg>
+ <constructor-arg index="1"  value="Gandhi Street"></constructor-arg>
+ <constructor-arg index="2"  value="Chennai"></constructor-arg>
+ <constructor-arg index="3"  value="600001"></constructor-arg>
+ </bean>
+ <bean id="address2" class="sh.surge.kunal.banking.models.Address">
+ <constructor-arg index="0"  value="16A"></constructor-arg>
+ <constructor-arg index="1"  value="Nehru Street"></constructor-arg>
+ <constructor-arg index="2"  value="Bangalore"></constructor-arg>
+ <constructor-arg index="3"  value="800001"></constructor-arg>
+ </bean>
+ <bean id="individual" class="sh.surge.kunal.banking.models.Individual" parent="customer">
+ <property name="gender" ref="gender"></property>
+ <property name="dob" ref="dob"></property>
+ </bean>
+ <bean id="corporate" class="sh.surge.kunal.banking.models.Corporate" parent="customer">
+  <property name="companyType" ref="companyType"></property>
+ </bean>
+ 
+ <bean id="gender" class="sh.surge.kunal.banking.models.Gender" factory-method="valueOf">
+ <constructor-arg value="FEMALE"></constructor-arg>
+ </bean>
+ <bean id="companyType" class="sh.surge.kunal.banking.models.CompanyType" factory-method="valueOf">
+ <constructor-arg value="Public"></constructor-arg>
+ </bean>
+ <bean id="dob" class="java.util.Date">
+ <constructor-arg index="0" value="125"></constructor-arg>
+  <constructor-arg index="1" value="0"></constructor-arg>
+   <constructor-arg index="2" value="12"></constructor-arg>
+ </bean>
+</beans>
